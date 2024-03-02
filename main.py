@@ -144,9 +144,6 @@ while True:
                                 pygame.time.delay(1000)
 
                             else:
-                                #pygame.time.delay(200)
-                                #screen.blit(image_lose1, (250, 200))
-                                #pygame.display.flip()
                                 pygame.time.delay(1000)
 
                                 for c in selected_cards:
