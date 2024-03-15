@@ -277,8 +277,8 @@ while True:
     elif new_board:
 
         # We shuffle the list of card positions everytime we create a new board.
-        #random.shuffle(card_positions)
-        #random.shuffle(card_positions_goat)
+        random.shuffle(card_positions)
+        random.shuffle(card_positions_goat)
 
         # The list with the card class objects for the goat mode is inside the game loop because we want to make sure
         # that we can create a new random board when the user wants to replay the game. Since for the goat mode we use
