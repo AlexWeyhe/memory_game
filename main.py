@@ -107,7 +107,7 @@ cards_hard = [(Card(image45, card_positions[0], 1), Card(image2_normal, card_pos
                Card(image4_normal, card_positions[0], 1)),
               (Card(image46, card_positions[0], 2), Card(image6_normal, card_positions[0], 2),
                Card(image8_normal, card_positions[0], 2)),
-              (Card(image47, card_positions[0], 2), Card(image10_normal, card_positions[0], 3),
+              (Card(image47, card_positions[0], 3), Card(image10_normal, card_positions[0], 3),
                Card(image12_normal, card_positions[0], 3)),
               (Card(image48, card_positions[0], 4), Card(image14_normal, card_positions[0], 4),
                Card(image16_normal, card_positions[0], 4)),
