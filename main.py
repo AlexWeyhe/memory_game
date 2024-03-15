@@ -48,11 +48,11 @@ class Card:
         self.is_face_up = False
         self.matching = matching
 
-    # This function is used to update the position of each card. When we initiate each card object they all get the same
-    # position on the screen. We only have 12 positions on the screen, but there are 44 images. Therefore, there would
-    # be overlapping positions. After selecting randomly 6 card pairs or four card triples (so 12 individual cards),
-    # we update the position of each card that will be used for this round of memory. Each round we have different cards
-    # in different positions.
+    # This function is used to update the position of each card (This applies to the cards we use in easy and hard mode). 
+    # When we initiate each card object they all get the same position on the screen. We only have 12 positions on the screen, 
+    # but there are 44 images. Therefore, there would be overlapping positions. After selecting randomly 
+    # 6 card pairs or four card triples (so 12 individual cards), we update the position of each card that will be used for 
+    # this round of memory. Each round we have different cards in different positions.
     def update_position(self, new_position):
         self.position = new_position
         self.rect = self.image.get_rect(topleft=new_position)
@@ -163,7 +163,7 @@ def draw_frame_ellipse(ellipse_center_x, ellipse_center_y, ellipse_width, ellips
 # This function is used to show the final screen of the game.
 def show_final_screen():
     # the variables end_game and replay_game hold the button for ending or replaying the game respectively.
-    # we use global so we can detect the collidepoint with the mouse inside our game while loop.
+    # We use global so we can detect the collidepoint with the mouse inside our game while loop.
     global end_game, replay_game
 
     # This draws the screen.
@@ -184,8 +184,8 @@ def show_final_screen():
 # This funtion resets the game.
 def reset_game():
     # We reset all the variables to the default values so the while loop can start at the very beginning of the game and
-    # the user can restart any game mode they want. Also, the variable for creating and randomizing the game board are
-    # reset. The global statements makes sure that we change the variables that are outside of the scope of this
+    # the user can restart any game mode they want. Also, the variables for creating and randomizing the game board are
+    # reset. The global statements make sure that we change the variables that are outside of the scope of this
     # function.
     global new_board, all_tries, show_start_screen, hard_mode, easy_mode, goat_mode, all_pairs
     global counter_for_all_cards, counter_for_all_card_positions, counter_for_hard_cards, counter_for_hard_card_positions
@@ -236,7 +236,7 @@ while True:
         mouse_pos = pygame.mouse.get_pos()
 
         # If the position of the mouse collides with the position of one of the game modes, a rectangle with the
-        # description of the game mode appears for as long as the mouse is on the mode button.
+        # description of the game mode appears for as long as the mouse is on the respective mode button.
         # If the user clicks on one of the game mode buttons, we set the show_start_screen variable to False and the
         # variable for the selected game mode to True. This way we don't show the start screen again and change to the
         # screen with the game.
@@ -273,7 +273,7 @@ while True:
 
         pygame.display.flip()
 
-    # Creating the board. After we leave the if-statement for the start screen we create a random board.
+    # Creating the board. After we leave the if-statement for the start screen we want to create a random board.
     elif new_board:
 
         # We shuffle the list of card positions everytime we create a new board.
@@ -282,7 +282,7 @@ while True:
 
         # The list with the card class objects for the goat mode is inside the game loop because we want to make sure
         # that we can create a new random board when the user wants to replay the game. Since for the goat mode we use
-        # all 44 cards, we can use always the same list and justhave randomize the list that holds the positions for
+        # all 44 cards, we can use always the same list and just have randomize the list that holds the positions for
         # the cards.
         cards_goat = [Card(image1_goat, card_positions_goat[0], 1), Card(image2_goat, card_positions_goat[1], 1),
                       Card(image3_goat, card_positions_goat[2], 2), Card(image4_goat, card_positions_goat[3], 2),
@@ -312,7 +312,7 @@ while True:
         # We shuffle the list of class objects for the cards everytime we create a new board.
         # The idea behind the following code is that we want to randomly select 6 card pairs (12 individual cards).
         # Since we loop through the list of cards, we will always select the first six tuples (consisting of two cards).
-        # To make sure we have new cards for every new round we shuffle the list and always get new tuples in the first
+        # To make sure we have new cards for every new round, we shuffle the list and always get new tuples in the first
         # six positions in the list.
         random.shuffle(cards_easy)
         random.shuffle(cards_hard)
@@ -335,7 +335,7 @@ while True:
 
         # Now we use our class function update_position() on the twelve cards we selected and assign a unique position
         # on the screen to each card. We do this by looping through the cards list and call update_position() function.
-        # We assign each a card a postion from the list of positions. Since we have shuffled this list before, we always
+        # We assign each card a postion from the list of positions. Since we have shuffled this list before, we always
         # get new positions.
         counter_for_all_card_positions = 0
 
@@ -380,7 +380,7 @@ while True:
                    # Check if a card is clicked on and flip it around.
                     mouse_pos = pygame.mouse.get_pos()
 
-                    # If the mouse position is on one of the cards and the card is not face up, we uncover the card-
+                    # If the user clicks on one of the cards and the card is not face up, we uncover the card.
                     for card in cards_easy_mode:
                         if card.rect.collidepoint(mouse_pos) and not card.is_face_up:
                             card.is_face_up = True
@@ -411,7 +411,7 @@ while True:
                                     pygame.display.flip()
                                     pygame.time.delay(1000)
 
-                                # If the cards don't match, we cover both of them up again and set the their is_face_up
+                                # If the cards don't match, we cover both of them up again by setting their is_face_up
                                 # values to False again.
                                 else:
                                     pygame.time.delay(1200)
@@ -435,7 +435,7 @@ while True:
             back_button = pygame.draw.ellipse(screen, WHITE, (5, 5, 80, 40))
             draw_text("BACK", back_button, BLACK, font3)
 
-            # If the is_face_up value of the card is True, we show its picture. Otherwise, we show cover image.
+            # If the is_face_up value of the card is True, we show its picture. Otherwise, we show the cover image.
             for card in cards_easy_mode:
                 if card.is_face_up:
                     screen.blit(card.image, card.rect)
@@ -465,6 +465,8 @@ while True:
                         elif replay_game.collidepoint(mouse_pos):
                             reset_game()
 
+                            # We set the is_face_up variable for all cards to False so they won't be shown when
+                            # the user restarts the game.
                             for card in cards_easy_mode:
                                 card.is_face_up = False
 
@@ -536,7 +538,7 @@ while True:
                 else:
                     screen.blit(cover_image, card.rect)
 
-            # Since there are twelce cards and we match three cards with each other, we are ending the game when there
+            # Since there are twelve cards and we match three cards with each other, we are ending the game when there
             # are four pairs.
             if all_pairs == 4:
 
